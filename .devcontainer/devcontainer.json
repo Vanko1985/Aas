@@ -1,3 +1,19 @@
-    "containerEnv": {
-        "DISABLE_JAVA_BUILD": "true"
-    }, 
+{
+    "image": "mcr.microsoft.com/devcontainers/universal:2",
+    "features": {
+        "ghcr.io/devcontainers/features/java:1": {
+            "version": "17"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "java.server.launchMode": "Standard"
+            },
+            "extensions": [
+                "vscjava.vscode-java-pack",
+                "ms-azuretools.vscode-docker"
+            ]
+        }
+    }
+}
