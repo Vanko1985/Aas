@@ -1,17 +1,33 @@
 {
-    "image": "mcr.microsoft.com/devcontainers/universal:2",
-    "containerEnv": {
-        "DISABLE_JAVA_BUILD": "true"
+  "name": "Gadgetbridge Build Environment",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "17",
+      "jdkDistro": "openjdk"
     },
-    "customizations": {
-        "vscode": {
-            "settings": {
-                "java.server.launchMode": "Standard"
-            },
-            "extensions": [
-                "vscjava.vscode-java-pack",
-                "ms-azuretools.vscode-docker"
-            ]
-        }
+    "android": {
+      "acceptLicenses": true,
+      "versions": ["33"],
+      "buildToolsVersion": "33.0.2",
+      "cmakeVersion": "3.22.1",
+      "ndkVersion": "25.2.9519653"
     }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "naco-siren.gradle-language",
+        "vscoss.vscode-ansible"
+      ]
+    }
+  },
+  "postCreateCommand": "git config --global --add safe.directory /workspaces/${localWorkspaceFolderBasename}",
+  "remoteUser": "vscode",
+  "runArgs": ["--privileged"],
+  "containerEnv": {
+    "ANDROID_HOME": "/usr/lib/android-sdk",
+    "PATH": "${containerEnv:PATH}:/usr/lib/android-sdk/cmdline-tools/latest/bin"
+  }
 }
