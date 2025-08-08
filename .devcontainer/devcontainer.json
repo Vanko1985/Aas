@@ -1,0 +1,3 @@
+    "containerEnv": {
+        "DISABLE_JAVA_BUILD": "true"
+    }, 
